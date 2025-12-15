@@ -56,6 +56,9 @@ main {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        position: sticky;
+        top: 0;
+        background-color: var(--bg-color);
 
         button {
             background-color: var(--bg-btn-color);
@@ -82,6 +85,8 @@ main {
             gap: var(--padding-m);
             background-color: var(--bg-btn-color);
             flex-grow: 1;
+            flex-wrap: nowrap;
+            width: 100%;
             padding: var(--padding-m);
             border-radius: var(--border-radius-m);
             transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
@@ -123,6 +128,65 @@ main {
         }
 
     }
+}
+
+//modal
+.modal {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    
+    //bg
+    .bg {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(60, 60, 60, 0.409);
+        backdrop-filter: blur(5px);
+    }
+
+    //center
+    .center {
+        background-color: var(--bg-btn-color);
+        padding: var(--padding-xxl);
+        border-radius: var(--border-radius-m);
+        display: flex;
+        flex-direction: column;
+        gap: var(--padding-m);
+        z-index: 10;
+
+        input,
+        textarea,
+        select {
+            background-color: var(--bg-task-color);
+            border: none;
+            outline: none;
+            color: var(--primary-text-color);
+            padding: var(--padding-m);
+            border-radius: var(--border-radius-s);
+        }
+
+        button {
+            background-color: var(--bg-task-color);
+            border: none;
+            outline: none;
+            color: var(--primary-text-color);
+            padding: var(--padding-m) var(--padding-l);
+            cursor: pointer;
+            border-radius: var(--border-radius-m);
+            width: fit-content;
+            align-self: center;
+        }
+    }
+}
+//modal active
+.active{
+    display: flex;
 }
 
 //Responsive Mobile
