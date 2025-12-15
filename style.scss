@@ -216,9 +216,22 @@ main {
         }
     }
     .modal {
-        width: 90%;
-        margin: 20px auto;
+        .center {
+            width: 90%;
+            padding: var(--padding-l);
+        }
+
+        input,
+        textarea,
+        select {
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            min-height: 80px;
+        }
     }
+
 }
 
 //responsive Tablet
@@ -232,6 +245,12 @@ main {
             }
         }
     }
+    .modal {
+        .center {
+            width: 70%;
+        }
+    }
+
 }
 
 //responsive small laptop

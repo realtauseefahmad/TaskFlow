@@ -183,9 +183,17 @@ main section .hover-over {
   main section .task-column {
     width: 100%;
   }
-  .modal {
+  .modal .center {
     width: 90%;
-    margin: 20px auto;
+    padding: var(--padding-l);
+  }
+  .modal input,
+  .modal textarea,
+  .modal select {
+    font-size: 0.9rem;
+  }
+  .modal textarea {
+    min-height: 80px;
   }
 }
 @media (min-width: 601px) and (max-width: 900px) {
@@ -194,6 +202,9 @@ main section .hover-over {
   }
   main section .task-column {
     flex: 1 1 calc(50% - var(--padding-xxl));
+  }
+  .modal .center {
+    width: 70%;
   }
 }
 @media (min-width: 901px) and (max-width: 1200px) {
