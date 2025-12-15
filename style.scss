@@ -39,8 +39,10 @@ main {
     flex-direction: column;
     min-height: 100vh;
 
-    // navbar
     nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -73,14 +75,14 @@ main {
         }
     }
 
-    // board
     .board {
         display: flex;
         gap: var(--gap-l);
         padding: var(--gap-l);
         align-items: flex-start;
 
-        // task column
+        overflow-y: auto; // make board scrollable under sticky nav
+
         .task-column {
             display: flex;
             flex-direction: column;
@@ -110,7 +112,6 @@ main {
                 }
             }
 
-            // task list
             .task {
                 display: flex;
                 flex-direction: column;
@@ -228,69 +229,50 @@ main {
     }
 }
 
-// reponsive design
-// MOBILE (default ≤600px)
+// RESPONSIVE
+
+// MOBILE (≤600px)
 @media (max-width: 600px) {
     main {
         nav {
             padding: 12px 16px;
 
-            h1 {
-                font-size: 1.3rem;
-            }
+            h1 { font-size: 1.3rem; }
 
-            button {
-                padding: 10px 18px;
-            }
+            button { padding: 10px 18px; }
         }
 
         .board {
             flex-direction: column;
             padding: var(--gap-m);
 
-            .task-column {
-                width: 100%;
-            }
+            .task-column { width: 100%; }
         }
     }
 
-    .modal {
-        .modal-box {
-            width: 90%;
-        }
-    }
+    .modal .modal-box { width: 90%; }
 }
 
-// TABLET (≥601px)
-@media (min-width: 601px) {
+// TABLET (601px - 900px)
+@media (min-width: 601px) and (max-width: 900px) {
     main {
         nav {
             padding: 14px 20px;
 
-            h1 {
-                font-size: 1.5rem;
-            }
+            h1 { font-size: 1.5rem; }
 
-            button {
-                padding: 11px 22px;
-            }
+            button { padding: 11px 22px; }
         }
 
         .board {
             flex-wrap: wrap;
             gap: var(--gap-m);
 
-            .task-column {
-                width: 48%;
-            }
+            .task-column { width: 48%; }
         }
     }
 
-    .modal {
-        .modal-box {
-            width: 400px;
-        }
-    }
+    .modal .modal-box { width: 400px; }
 }
 
 // DESKTOP (≥901px)
@@ -299,29 +281,18 @@ main {
         nav {
             padding: 18px 24px;
 
-            h1 {
-                font-size: 1.7rem;
-            }
+            h1 { font-size: 1.7rem; }
 
-            button {
-                padding: 12px 24px;
-            }
+            button { padding: 12px 24px; }
         }
 
         .board {
             flex-wrap: nowrap;
             padding: var(--gap-l);
 
-            .task-column {
-                width: auto;
-                flex: 1;
-            }
+            .task-column { width: auto; flex: 1; }
         }
     }
 
-    .modal {
-        .modal-box {
-            width: 360px;
-        }
-    }
+    .modal .modal-box { width: 360px; }
 }
