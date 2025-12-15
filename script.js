@@ -6,6 +6,45 @@ const tasks = document.querySelectorAll(".task");
 const columns = [todo, progress, done];
 let dragElement = null;
 
+// Helper function to add drag + touch events
+function makeTaskDraggable(div) {
+    // Desktop drag
+    div.addEventListener("dragstart", () => {
+        dragElement = div;
+    });
+
+    // Mobile touch drag
+    div.addEventListener("touchstart", (e) => {
+        dragElement = div;
+        div.style.position = "absolute";
+        div.style.zIndex = "1000";
+    });
+
+    div.addEventListener("touchmove", (e) => {
+        e.preventDefault(); 
+        const touch = e.touches[0];
+        div.style.left = touch.clientX - div.offsetWidth/2 + "px";
+        div.style.top = touch.clientY - div.offsetHeight/2 + "px";
+    });
+
+    div.addEventListener("touchend", (e) => {
+        div.style.position = "static";
+        div.style.zIndex = "auto";
+
+        const touch = e.changedTouches[0];
+        columns.forEach(col => {
+            const rect = col.getBoundingClientRect();
+            if(touch.clientX > rect.left &&
+               touch.clientX < rect.right &&
+               touch.clientY > rect.top &&
+               touch.clientY < rect.bottom){
+                   col.appendChild(div);
+                   updateTaskCount();
+            }
+        });
+    });
+}
+
 function addTask(title, desc, column) {
     const div = document.createElement("div");
     div.classList.add("task");
@@ -15,9 +54,7 @@ function addTask(title, desc, column) {
                     <button>Delete</button>`;
     column.appendChild(div);
 
-    div.addEventListener("dragstart", () => {
-        dragElement = div;
-    });
+    makeTaskDraggable(div);
 
     const deleteBtn = div.querySelector("button");
     deleteBtn.addEventListener("click", () => {
@@ -58,9 +95,7 @@ if (localStorage.getItem("tasks")) {
 }
 
 tasks.forEach(task => {
-    task.addEventListener("dragstart", () => {
-        dragElement = task;
-    });
+    makeTaskDraggable(task);
 });
 
 function addDragEventsOnColumn(column) {
