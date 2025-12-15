@@ -183,6 +183,10 @@ main section .hover-over {
   main section .task-column {
     width: 100%;
   }
+  .modal {
+    width: 90%;
+    margin: 20px auto;
+  }
 }
 @media (min-width: 601px) and (max-width: 900px) {
   main section {
